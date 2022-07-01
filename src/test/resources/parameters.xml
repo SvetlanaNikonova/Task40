@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name = "ParameterTest">
+
+    <test name = "Login">
+        <parameter name="userName" value="SeleniumTest789"/>
+        <parameter name="password" value="belekoks_789!"/>
+        <classes>
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.YandexLoginTest">
+                <methods>
+                    <include name="loginTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name = "Login2">
+        <parameter name="userName" value="SeleniumTest789test"/>
+        <parameter name="password" value="belekoks_789!"/>
+        <classes>
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.YandexLoginTest">
+                <methods>
+                    <include name="loginTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -45,6 +45,8 @@ public class YandexLoginTest {
         driver.findElement(By.id("passp:sign-in")).click();
 
         String inboxPageTitle = "Inbox";
+        // Explicit waiter
+        Thread.sleep(2000);
         Assert.assertTrue(driver.getTitle().contains(inboxPageTitle));
     }
 

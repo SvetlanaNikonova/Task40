@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -32,8 +34,8 @@ public class YandexLoginTest {
 
         driver.findElement(By.cssSelector(".HeadBanner-ButtonsWrapper > a:last-child")).click();
 
-        String title = driver.getTitle();
-        Assert.assertEquals("Authorization", title);
+        String authorizationPageTitle = driver.getTitle();
+        Assert.assertEquals("Authorization", authorizationPageTitle);
 
         WebElement usernameInput = driver.findElement(By.id("passp-field-login"));
         usernameInput.clear();
@@ -44,10 +46,13 @@ public class YandexLoginTest {
         passwordInput.sendKeys(password);
         driver.findElement(By.id("passp:sign-in")).click();
 
-        String inboxPageTitle = "Inbox";
+        String expectedInboxPageTitle = "Inbox";
         // Explicit waiter
-        Thread.sleep(2000);
-        Assert.assertTrue(driver.getTitle().contains(inboxPageTitle));
+      //  Thread.sleep(2000);
+        WebElement name = driver.findElement(By.className("PSHeader-User"));
+        WebElement waiter = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOf(name));
+        Assert.assertTrue(driver.getTitle().contains(expectedInboxPageTitle));
     }
 
     @AfterTest

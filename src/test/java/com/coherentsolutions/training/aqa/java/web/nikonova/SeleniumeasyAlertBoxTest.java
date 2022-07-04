@@ -10,8 +10,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-
-public class SeleniumeasyConfirmBoxAlertsTest {
+public class SeleniumeasyAlertBoxTest {
 
     private WebDriver driver;
     private final String URL = "https://demo.seleniumeasy.com/javascript-alert-box-demo.html";
@@ -24,42 +23,22 @@ public class SeleniumeasyConfirmBoxAlertsTest {
     }
 
     @Test
-    public void confirmBoxAcceptTest() {
+    public void alertBoxTest() {
 
         driver.get(URL);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement clickMeButton = driver.findElement(By.cssSelector("button[onclick='myConfirmFunction()']"));
+        WebElement clickMeButton = driver.findElement(By.cssSelector("button[onclick='myAlertFunction()']"));
         clickMeButton.click();
 
         try {
-
             Alert alert = driver.switchTo().alert();
+            String textOnAlert = alert.getText();
             alert.accept();
-            WebElement message = driver.findElement(By.id("confirm-demo"));
-            Assert.assertEquals("You pressed OK!", message.getText());
+
+            Assert.assertEquals("I am an alert box!", textOnAlert);
 
         } catch (NoAlertPresentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void confirmBoxDismissTest() {
-
-        driver.get(URL);
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement clickMeButton = driver.findElement(By.cssSelector("button[onclick='myConfirmFunction()']"));
-        clickMeButton.click();
-
-        try {
-            Alert alert = driver.switchTo().alert();
-            alert.dismiss();
-            WebElement message1 = driver.findElement(By.id("confirm-demo"));
-            Assert.assertEquals("You pressed Cancel!", message1.getText());
-
-        }catch (NoAlertPresentException e) {
             e.printStackTrace();
         }
     }

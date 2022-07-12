@@ -10,10 +10,10 @@ import java.util.List;
 
 public class EmployeeTable {
 
-    public static String CELL_LOCATOR = "td:nth-child(";
-    public static By ENTRY_COUNT_SELECT = By.cssSelector("select[name=example_length]");
-    public static By NEXT_BUTTON = By.id("example_next");
-    public static By TABLE = By.cssSelector("table#example>tbody>tr");
+    public static final String CELL_LOCATOR = "td:nth-child(";
+    public static final By ENTRY_COUNT_SELECT = By.cssSelector("select[name=example_length]");
+    public static final By NEXT_BUTTON = By.id("example_next");
+    public static final By TABLE = By.cssSelector("table#example>tbody>tr");
 
     static ArrayList<Employee> getEmployeeData(WebDriver driver, double ageFilter, double salaryFilter) {
         Select select = new Select(driver.findElement(ENTRY_COUNT_SELECT));

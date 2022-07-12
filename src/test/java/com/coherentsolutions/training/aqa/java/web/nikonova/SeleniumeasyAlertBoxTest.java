@@ -8,26 +8,18 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
-public class SeleniumeasyAlertBoxTest {
+public class SeleniumeasyAlertBoxTest extends BaseTest{
 
-    private WebDriver driver;
+
     private final String URL = "https://demo.seleniumeasy.com/javascript-alert-box-demo.html";
 
     public static final By CLICK_BUTTON = By.cssSelector("button[onclick='myAlertFunction()']");
 
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        driver.get(URL);
-    }
 
     @Test
     public void alertBoxTest() {
 
-
+        driver.get(URL);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement clickMeButton = driver.findElement(CLICK_BUTTON);
         clickMeButton.click();
@@ -42,10 +34,5 @@ public class SeleniumeasyAlertBoxTest {
         } catch (NoAlertPresentException e) {
             e.printStackTrace();
         }
-    }
-
-    @AfterMethod
-    public void cleanUp() {
-        driver.quit();
     }
 }

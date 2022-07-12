@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class EmployeeTest extends BaseTest {
 
-    private final String URL = "https://demo.seleniumeasy.com/table-sort-search-demo.html";
+    private String URL = "https://demo.seleniumeasy.com/table-sort-search-demo.html";
 
 
     @Test

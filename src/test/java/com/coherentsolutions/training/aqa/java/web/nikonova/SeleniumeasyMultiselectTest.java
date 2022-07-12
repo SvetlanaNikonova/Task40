@@ -7,11 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import javax.lang.model.util.Elements;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,17 +21,18 @@ public class SeleniumeasyMultiselectTest {
 
     public static final By SELECT = By.cssSelector("select#multi-select");
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        driver.get(URL);
     }
 
     @Test
     public void multiselectTest() throws InterruptedException {
 
-        driver.get(URL);
 
         Select select = new Select(driver.findElement(SELECT));
 
@@ -59,7 +57,7 @@ public class SeleniumeasyMultiselectTest {
         Assert.assertEquals(randomOptions, selectedOptions);
     }
 
-    @AfterTest
+    @AfterMethod
     public void cleanUp() {
         driver.quit();
     }

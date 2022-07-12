@@ -15,11 +15,11 @@ public class EmployeeTable {
     public static final By NEXT_BUTTON = By.id("example_next");
     public static final By TABLE = By.cssSelector("table#example>tbody>tr");
 
+
     static ArrayList<Employee> getEmployeeData(WebDriver driver, double ageFilter, double salaryFilter) {
         Select select = new Select(driver.findElement(ENTRY_COUNT_SELECT));
 
-        // Table shows 10 entries ( it could be 10, 25, 50 or 100)
-        select.selectByValue("10");
+        select.equals(ENTRY_COUNT_SELECT);
 
         ArrayList<Employee> employees = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class EmployeeTable {
                 }
             });
 
-            if (nextButton.getAttribute("class").equals("paginate_button next")) {
+            if (rows.contains(NEXT_BUTTON)) {
                 nextButton.click();
             } else {
                 break;

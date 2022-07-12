@@ -16,7 +16,7 @@ public class EmployeeTest extends BaseTest {
         driver.get(URL);
         int ageMoreThan = 65;
         int salaryMax = 400000;
-        int expectedEmployeeCount = 2;
+        int expectedEmployeeCount = 1;
 
         ArrayList<Employee> employees = EmployeeTable.getEmployeeData(driver, ageMoreThan, salaryMax);
         Assert.assertEquals(employees.size(), expectedEmployeeCount, "Employee size doesn't match");

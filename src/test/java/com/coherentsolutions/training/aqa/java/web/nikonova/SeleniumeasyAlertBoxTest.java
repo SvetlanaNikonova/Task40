@@ -15,6 +15,8 @@ public class SeleniumeasyAlertBoxTest {
     private WebDriver driver;
     private final String URL = "https://demo.seleniumeasy.com/javascript-alert-box-demo.html";
 
+    public static final By CLICK_BUTTON = By.cssSelector("button[onclick='myAlertFunction()']");
+
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
@@ -28,7 +30,7 @@ public class SeleniumeasyAlertBoxTest {
         driver.get(URL);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement clickMeButton = driver.findElement(By.cssSelector("button[onclick='myAlertFunction()']"));
+        WebElement clickMeButton = driver.findElement(CLICK_BUTTON);
         clickMeButton.click();
 
         try {

@@ -22,6 +22,8 @@ public class SeleniumeasyMultiselectTest {
     private WebDriver driver;
     private final String URL = "https://demo.seleniumeasy.com/basic-select-dropdown-demo.html";
 
+    public static final By SELECT = By.cssSelector("select#multi-select");
+
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
@@ -34,7 +36,7 @@ public class SeleniumeasyMultiselectTest {
 
         driver.get(URL);
 
-        Select select = new Select(driver.findElement(By.cssSelector("select#multi-select")));
+        Select select = new Select(driver.findElement(SELECT));
 
         List<WebElement> options = select.getOptions();
         Collections.shuffle(options);

@@ -19,6 +19,8 @@ public class SeleniumeasyDownloadTest {
     private WebDriver driver;
     private final String URL = "https://demo.seleniumeasy.com/bootstrap-download-progress-demo.html";
 
+    public static final By BUTTON = By.id("cricle-btn");
+
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
@@ -33,7 +35,7 @@ public class SeleniumeasyDownloadTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement button = driver.findElement(By.id("cricle-btn"));
+        WebElement button = driver.findElement(BUTTON);
         button.click();
 
         Pattern p = Pattern.compile("([5-9][0-9])");

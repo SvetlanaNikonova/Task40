@@ -19,6 +19,12 @@ public class YandexLoginTest {
     private WebDriver driver;
     private final String URL = "https://mail.yandex.com/";
 
+    public static final By BUTTON = By.cssSelector(".HeadBanner-ButtonsWrapper > a:last-child");
+    public static final By USERNAME_INPUT = By.id("passp-field-login");
+    public static final By SIGN_IN = By.id("passp:sign-in");
+    public static final By PASSWORD_INPUT = By.id("passp-field-passwd");
+    public static final By NAME = By.className("PSHeader-User");
+
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
@@ -32,24 +38,24 @@ public class YandexLoginTest {
 
         driver.get(URL);
 
-        driver.findElement(By.cssSelector(".HeadBanner-ButtonsWrapper > a:last-child")).click();
+        driver.findElement(BUTTON).click();
 
         String authorizationPageTitle = driver.getTitle();
         Assert.assertEquals("Authorization", authorizationPageTitle);
 
-        WebElement usernameInput = driver.findElement(By.id("passp-field-login"));
+        WebElement usernameInput = driver.findElement(USERNAME_INPUT);
         usernameInput.clear();
         usernameInput.sendKeys(userName);
-        driver.findElement(By.id("passp:sign-in")).click();
-        WebElement passwordInput = driver.findElement(By.id("passp-field-passwd"));
+        driver.findElement(SIGN_IN).click();
+        WebElement passwordInput = driver.findElement(PASSWORD_INPUT);
         passwordInput.clear();
         passwordInput.sendKeys(password);
-        driver.findElement(By.id("passp:sign-in")).click();
+        driver.findElement(SIGN_IN).click();
 
         String expectedInboxPageTitle = "Inbox";
         // Explicit waiter
       //  Thread.sleep(2000);
-        WebElement name = driver.findElement(By.className("PSHeader-User"));
+        WebElement name = driver.findElement(NAME);
         WebElement waiter = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOf(name));
         Assert.assertTrue(driver.getTitle().contains(expectedInboxPageTitle));

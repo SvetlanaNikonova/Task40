@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class EmployeeTable {
 
@@ -19,6 +18,7 @@ public class EmployeeTable {
     static ArrayList<Employee> getEmployeeData(WebDriver driver, double ageFilter, double salaryFilter) {
         Select select = new Select(driver.findElement(ENTRY_COUNT_SELECT));
 
+        // Table shows 10 entries ( it could be 10, 25, 50 or 100)
         select.selectByValue("10");
 
         ArrayList<Employee> employees = new ArrayList<>();
@@ -40,8 +40,7 @@ public class EmployeeTable {
                 }
             });
 
-
-            if (Objects.equals(nextButton.getAttribute("class"), "paginate_button next")) {
+            if (nextButton.getAttribute("class").equals("paginate_button next")) {
                 nextButton.click();
             } else {
                 break;
